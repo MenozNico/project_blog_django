@@ -2,6 +2,7 @@ from django.shortcuts import render
 from blog.models import Post, Comment
 from blog.forms import CommentForm
 
+"""
 def blog_index(request):
     posts = Post.objects.all().order_by('-created_on')
     context = {
@@ -10,6 +11,7 @@ def blog_index(request):
 
     return render(request, "blog_index.html", context)
 
+"""
 
 def blog_category(request, category):
     posts = Post.objects.filter(
@@ -24,7 +26,7 @@ def blog_category(request, category):
 
     return render(request, "blog_category.html", context)
 
-
+"""
 def blog_detail(request, pk):
     post = Post.objects.get(pk=pk)
 
@@ -47,3 +49,18 @@ def blog_detail(request, pk):
     }
 
     return render(request, "blog_detail.html", context)
+"""
+#################################
+### GCBV Generic Class Based View
+
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+
+
+class BlogDetail(DetailView):
+    model = Post
+    template_name = "blog_detail.html"
+
+class BlogListIndex(ListView):
+    model = Post
+    template_name = "blog_index.html"

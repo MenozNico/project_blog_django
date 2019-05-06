@@ -5,7 +5,7 @@
 <div class="col-md-8 offset-md-2">
   <h1><a href="{% url 'blog_index' %}">Blog Index</a></h1>
   <hr>
-  {% for post in posts %}
+  {% for post in object_list %}
   <h2><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h2>
   <small>
     {{ post.created_on.date }} | &nbsp;
