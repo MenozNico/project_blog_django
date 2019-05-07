@@ -1,11 +1,23 @@
 from django.contrib import admin
-from blog.models import Post, Category
+from django.contrib.admin import register
 
+from . import models
+
+class CategoryPostInline(admin.TabularInline):
+    model = models.CategoryPost
+
+@register(models.Post)
 class PostAdmin(admin.ModelAdmin):
-    pass
+    inlines = [
+        CategoryPostInline
+    ]
 
+@register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(Post, PostAdmin)
-admin.site.register(Category, CategoryAdmin)
+
+
+
+
+
